@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>iOS Simulator Gotchas</title>
+    <link rel="stylesheet" type="text/css" href="htmlblog.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="/index.html">Korey Hinton</a> |
+      <a href="/blog/index.html">Blog</a>
+    </nav>
+    <aside>
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- responsive-leaderboard-koreyhintonblog -->
+      <ins class="adsbygoogle"
+	   style="display:block"
+	   data-ad-client="ca-pub-4344307951738938"
+	   data-ad-slot="4897685273"
+	   data-ad-format="auto"></ins>
+      <script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </aside>
+    <main>
+      <article>
+	<header>
+	  <h1>iOS Simulator Gotchas </h1>
+	  <address><a rel="author" href="/index.html">Korey Hinton</a></address> on <time datetime="2016-03-13">March 3, 2016</time>
+	</header>
+
+	<p>Can anything be more frustrating as an iOS developer than seeing weird things you can't easily figure out in your own code then to just later realize your code wasn't even the problem. Here are a few things to look out for if you get stuck with some weird display issue you can't seem to find in code. </p>
+
+	<h2>Where's the keyboard?</h2>
+	<p>From the file menu just select: Hardware &gt; Keyboard &gt; <strong>Toggle Software Keyboard</strong></p>
+	<img class="border" src="images/no-keyboard.png"></img>
+	<p>Tip: Make sure your user interface code is accounting for the full keyboard display and the small keyboard display (when an external keyboard is being used)</p>
+	
+	<h2>Where are the dividing lines between tableview cells?</h2>
+	<p>From the file menu select: Window &gt; Scale &gt; <strong>100%</strong></p>
+	<img class="border" src="images/no-dividers.png"></img>
+
+	<h2>Why is everything running so slow?</h2>
+	<p>Do screen rotations and view controller transitions taking a long time? From the file menu unselect: Debug &gt; <strong>Slow Animations</strong></p>
+	<video class="border" width="352" height="361" controls>
+	  <source src="videos/slow-animations.mp4" type="video/mp4">
+	    
+	    Your browser does not support the video tag.
+	</video>
+
+	<p>Tip: If you see some new weird issue in the simulator you can save yourself some time by running it on a real device to confirm the issue is isolated to simulator only.</p>
+      </article>
+      
+    </main>
+    <aside>
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive-leaderboard-koreyhintonblog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4344307951738938"
+     data-ad-slot="4897685273"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    </aside>
+    <footer>
+      
+    </footer>
+  </body>
+</html>
