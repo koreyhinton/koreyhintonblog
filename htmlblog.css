@@ -20,7 +20,7 @@ h2 {
     border:1px solid black;
 }
 
-a:link {
+a:link, a:visited, a:hover, a:active {
     color:#9C9B9B;
     text-decoration:none;
 }
