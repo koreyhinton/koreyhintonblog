@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>iPhone Popover</title>
+    <link rel="stylesheet" type="text/css" href="htmlblog.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="/index.html">Korey Hinton</a> |
+      <a href="/blog/index.html">Blog</a>
+    </nav>
+    <aside>
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- responsive-leaderboard-koreyhintonblog -->
+      <ins class="adsbygoogle"
+	   style="display:block"
+	   data-ad-client="ca-pub-4344307951738938"
+	   data-ad-slot="4897685273"
+	   data-ad-format="auto"></ins>
+      <script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </aside>
+    <main>
+      <article>
+	<header>
+	  <h1>iPhone Popover</h1>
+	  <address><a rel="author" href="/index.html">Korey Hinton</a></address> on <time datetime="2016-03-14">March 14, 2016</time>
+	</header>
+
+	<p>As of iOS 8 it is now possible to present a real popover on an iPhone. I'll show two examples, one with a segue in the storyboard and the other from code</p>
+
+	<h2>iPhone Popover - Storyboard Segue</h2>
+	<p>In the storyboard CTRL-click to drag from the presenting controller to your controller you want as a popover. </p>
+	<img class="border" src="images/present-as-popover.png"></img>
+
+	<p>Now I'll create a function that takes in the needed parameters to be able to prepare the content controller (that will appear in the popover) to be in the popover.</p>
+	<pre>
+
+	  func preparePopover(contentController: UIViewController,
+	                                 sender: UIView,
+	                               delegate: UIPopoverPresentationControllerDelegate?) {
+	  
+	      contentController.modalPresentationStyle = .Popover
+	      contentController.popoverPresentationController!.sourceView = sender
+	      contentController.popoverPresentationController!.sourceRect = sender.bounds
+	      contentController.popoverPresentationController!.delegate = delegate
+	  }
+
+	</pre>
+
+	<p>If you run that code as is you'll notice that in a compact width (ie: iPhone portrait) the popover actually fills the screen. If we want to incorporate custom behavior for this we can and that's why we are taking in an option delegate parameter. Let's assume we always want to make it look like a popover:</p>
+
+<pre>
+class ViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+
+    func preparePopover(contentController: UIViewController,
+	                           sender: UIView,
+	                         delegate: UIPopoverPresentationControllerDelegate?) {
+
+        contentController.modalPresentationStyle = .Popover
+        contentController.popoverPresentationController!.sourceView = sender
+        contentController.popoverPresentationController!.sourceRect = sender.bounds
+        contentController.popoverPresentationController!.delegate = delegate
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+	  
+        super.prepareForSegue(segue, sender: sender)
+        
+        preparePopover(segue.destinationViewController, sender: sender as! UIView, delegate: self)
+    }
+
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
+    }
+}
+	  
+
+</pre>
+
+<p>Notice in the code above that we are providing the delegate callback to tell it to use adaptive presentation style "None", so it stays as a default popover. Now it appears like we expected it to:</p>
+
+<img class="border" src="images/popover-result.png"></img>
+
+	<h2>Progammatically in code</h2>
+	<p>Doing this behavior in code is just as easy, we just need to do the presentation part manually:</p>
+
+<pre>
+class ViewController: UIViewController, UIPopoverPresentationControllerDelegate {
+
+    func preparePopover(contentController: UIViewController,
+	                           sender: UIView,
+	                         delegate: UIPopoverPresentationControllerDelegate?) {
+
+        contentController.modalPresentationStyle = .Popover
+        contentController.popoverPresentationController!.sourceView = sender
+        contentController.popoverPresentationController!.sourceRect = sender.bounds
+        contentController.popoverPresentationController!.delegate = delegate
+    }
+    
+    func presentPopover(sender: UIView) {
+	  
+        let viewController = UIViewController()
+        preparePopover(viewController, sender: sender, delegate: self)
+        presentViewController(viewController, animated: true, completion: nil)
+        
+    }
+
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .None
+    }
+}
+	  
+
+</pre>	
+
+
+
+
+
+
+	<h2>What about adapting?</h2>
+	<p>Since the view controller can be the delegate, it can decide what presentation style to do based on the circumstances it finds itself in. For this reason there is an optional parameter to give you the size class:</p>
+<pre>
+	//...  
+	     func adaptivePresentationStyleForPresentationController(controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return (traitCollection.horizontalSizeClass == .Compact) ? .Popover : .None
+    }
+}
+	  
+
+</pre>
+	<p>The "adapting" code above just essentially does what the default behavior is. Apple makes the assumption that the default behavior is to fill the whole screen rather than as a real popover. Its kind of backwards a little bit since return .Popover seems like it would be a popover but its .None that forces it to be a popover.</p>
+      
+    </main>
+    <aside>
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive-leaderboard-koreyhintonblog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4344307951738938"
+     data-ad-slot="4897685273"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    </aside>
+    <footer>
+      
+    </footer>
+  </body>
+</html>
