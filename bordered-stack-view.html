@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bordered Stack View</title>
+    <link rel="stylesheet" type="text/css" href="htmlblog.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="/index.html">Korey Hinton</a> |
+      <a href="/blog/index.html">Blog</a>
+    </nav>
+    <aside>
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- responsive-leaderboard-koreyhintonblog -->
+      <ins class="adsbygoogle"
+	   style="display:block"
+	   data-ad-client="ca-pub-4344307951738938"
+	   data-ad-slot="4897685273"
+	   data-ad-format="auto"></ins>
+      <script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </aside>
+    <main>
+      <article>
+	<header>
+	  <h1>Bordered Stack View</h1>
+	  <address><a rel="author" href="/index.html">Korey Hinton</a></address> on <time datetime="2016-03-17">March 17, 2016</time>
+	</header>
+
+	<p>UIStackView is a brilliant abstraction. Sometimes I love it, other times I hate it. UIStackView can make some very difficult layouts a bit easier. But can it have borders? Not easily. It needs to have the right conditions and the borders actually have to be part of the stack view. In this example I'll make a simple 2x2 cell grid.</p>
+
+	<h2>Nested stack views</h2>
+	<p>To get this to work you'll need to nest 2 stack views inside of 1 outer one. The outer stack view needs to have its axis perpendicular to the inner one. While it doesn't matter which axis is the outer one, in this tutorial I have the outer stack view be a vertical stack view. If you do it the other way you'll have to reverse the constraints.</p>
+
+	  <h2>Outer Vertical Stack View</h2>
+	  <p>The figure below has expanded to show just what's in the outer vertical stack view. For both stack views I left the default setting of alignment and distribution being type fill and spacing is set to 0. Obviously FillEqually would not work since the border views are part of the stack view. I made the main view's background color black so that when I drag on UIView it'll have the default white color. Notice I put plain white views between the 2 inner horizontal stack views and gave the white views a height constraint of 1. These will be the horizontal lines in the border. Note: if you are not using Fill alignment you'll have to also give those views equal widths to the superview (vertical stack view) so that it knows how wide the view is to be, but in this example we're using Fill alignment so we're golden:</p>
+	<img class="border" src="images/bordered-stack-view-constraints-vertical.png"></img>
+
+	<h2>Inner Horizontal Stack Views</h2>
+	<p>The inner stack views contain the buttons A, B, C, D. I've expanded just the first one of the two inner horizontal stack views so that you can see how the A and B buttons are surrounded by UIViews that have width constraints set to 1. These white views will provide the vertical borders between and around the buttons.</p>
+
+	<img class="border" src="images/bordered-stack-view-constraints-horizontal.png"></img>
+
+
+	<h2>The Full Stack View</h2>
+	<p>Here is the whole view hierarchical outline. Notice I've added horizontal and vertical centering constraints between the outer stack view and the main view.</p>
+	<img class="border" src="images/bordered-stack-view-constraints.png"></img>
+
+	<h2>The Result</h2>
+	<p>So after all that work just to show a 2x2 grid, here it is:</p>
+
+	<img src="images/bordered-stack-view.png"></img>
+
+	<p>Remember that this gets pretty complicated but is a hack to get something small and simple to work. If you have a much larger number of arranged subviews then this might be too much work and if you are changing the layout axis based on size classes you'll have to have 2 sets of all these constraints. Its also important to note that even if I had 1 dimensional layout, like just simply a single column of rows I still need the nesting of stack views since borders need to be applied in 2 dimensions. Good luck.</p>
+
+	<h2>See the storyboard file</h2>
+	<p>You can visit <a href="https://github.com/koreyhinton/BorderedStackViewTester">my BorderedStackViewTester github repository</a> to download the project and see exactly how the storyboard file looks.</p>
+	
+    </main>
+    <aside>
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive-leaderboard-koreyhintonblog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4344307951738938"
+     data-ad-slot="4897685273"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    </aside>
+    <footer>
+      
+    </footer>
+  </body>
+</html>
