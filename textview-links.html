@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Text View Links</title>
+    <link rel="stylesheet" type="text/css" href="htmlblog.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="/index.html">Korey Hinton</a> |
+      <a href="/blog/index.html">Blog</a>
+    </nav>
+    <aside>
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- responsive-leaderboard-koreyhintonblog -->
+      <ins class="adsbygoogle"
+	   style="display:block"
+	   data-ad-client="ca-pub-4344307951738938"
+	   data-ad-slot="4897685273"
+	   data-ad-format="auto"></ins>
+      <script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </aside>
+    <main>
+      <article>
+	<header>
+	  <h1>Text View Links</h1>
+	  <address><a rel="author" href="/index.html">Korey Hinton</a></address> on <time datetime="2016-03-20">March 20, 2016</time>
+	</header>
+
+	<p>Making links tappable inside UITextView is pretty trivial, but I always forget a thing or two.</p>
+
+	<h2>Turn Off Editing</h2>
+	<p>If the text view is editable then the user's interaction with the text will be to select and revise the text rather than being able to tap on links so the first thing you'll want to do is to disable editing</p>
+	
+<pre>
+textView.editing = false
+</pre>
+
+<h2>Turn on all data detection types</h2>
+	<p>This will allow urls, phone numbers, and addresses all to be automatically detected for you</p>
+
+<pre>
+textView.dataDetectorTypes = .All
+</pre>
+
+<h2>Set Text</h2>
+
+
+<p>You could alternatively set the attributedText property if you'd like finer control over the styling, but to keep it simple you can just use the text property:</p>
+<pre>
+textView.text = "Google: http://google.com"
+</pre>
+	<h2>Styling</h2>
+	<p>There are two easy ways to style all links to look the same. One way is to just set the tintColor of the textView. The other way is to pass in an attribute dictionary which will allow you to even do things like underline</p>
+	
+
+<pre>
+ textView.tintColor = UIColor.redColor()
+ // OR:
+ textView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.redColor(), NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue]
+</pre>	
+
+
+
+
+
+
+	<h2>Complete Example:</h2>
+	<p>Here is a complete example showing all three data detector types</p>
+<pre>
+class ViewController: UIViewController {
+
+    private var textView: UITextView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        textView = UITextView(frame: CGRect(x: 20, y: 20, width: 290, height: 70))
+        //textView.tintColor = UIColor.redColor()
+        textView.linkTextAttributes = [NSForegroundColorAttributeName: UIColor.redColor(), NSUnderlineStyleAttributeName: NSUnderlineStyle.StyleSingle.rawValue]
+        textView.editable = false
+        textView.dataDetectorTypes = .All
+        textView.text = "Google \n" +
+        "http://google.com\n" +
+        "1600 Amphitheatre Pkwy, Mountain View, CA 94043 \n" +
+        "(650) 253-0000"
+        
+        view.addSubview(textView)
+    }
+}	  
+	  
+</pre>
+<h2>Other Alternatives:</h2>
+	<p>Some of the other alternatives could be UILabel, which doesn't allow tapping or doing custom styling in a web view which might present other challenges.</p>
+      
+    </main>
+    <aside>
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive-leaderboard-koreyhintonblog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4344307951738938"
+     data-ad-slot="4897685273"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    </aside>
+    <footer>
+      
+    </footer>
+  </body>
+</html>
