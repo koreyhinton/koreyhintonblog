@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ugly</title>
+    <link rel="stylesheet" type="text/css" href="htmlblog.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="/index.html">Korey Hinton</a> |
+      <a href="/blog/index.html">Blog</a>
+    </nav>
+    <aside>
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- responsive-leaderboard-koreyhintonblog -->
+      <ins class="adsbygoogle"
+	   style="display:block"
+	   data-ad-client="ca-pub-4344307951738938"
+	   data-ad-slot="4897685273"
+	   data-ad-format="auto"></ins>
+      <script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </aside>
+    <main>
+      <article>
+	<header>
+	  <h1>Ugly</h1>
+	  <address><a rel="author" href="/index.html">Korey Hinton</a></address> on <time datetime="2016-03-21">March 21, 2016</time>
+	</header>
+
+	<p>When it comes to debugging user interface that is really hard to see, uglier is better. I created a simple debugging tool that can help you to see what the views in your app really look like by applying background colors to all views and optionally allowing you to show all transparent or hidden ones.</p> 
+
+	<h2>Random Colors are Ugly</h2>
+	<p>In case you didn't realize, assigning random colors can make things look really ugly:</p>
+
+	<img class="border" src="images/ugly.png" alt="ugly" />
+
+<h2>Just Call the ugly() function</h2>
+	<p>Using the ugly function is easy:</p>
+
+<pre>
+ugly()
+</pre>
+
+<p>You'll want to wait until all your user interface elements are loaded on a particular view controller. So go to that view controller's file and call it in viewDidAppear:</p>
+
+<pre>
+override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    // code
+    ugly()
+}
+</pre>
+
+<h2>Advanced Options</h2>
+
+
+<p>Since heck I'm traversing the view hierarchy anyways why not allow you to make transparent views opaque and hidden views visible if you want to?</p>
+<pre>
+ugly(makeVisible: true, makeOpaque: true)
+</pre>
+
+	<h2>Save some time</h2>
+	<p>Bookmark this utility function or make your own so that when you need to debug the user interface you don't have to take a bunch of time to go set a bunch of views to different colors and have to remember to set them back. Just do this one function call and remove it afterwards. Check it out on  my github: <a href="https://github.com/koreyhinton/iosdebug">https://github.com/koreyhinton/iosdebug</a> and download the Ugly.swift file.</p>
+
+	
+</article>      
+    </main>
+    <aside>
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive-leaderboard-koreyhintonblog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4344307951738938"
+     data-ad-slot="4897685273"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    </aside>
+    <footer>
+      
+    </footer>
+  </body>
+</html>
