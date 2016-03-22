@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Navigation Bar Colors</title>
+    <link rel="stylesheet" type="text/css" href="htmlblog.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="/index.html">Korey Hinton</a> |
+      <a href="/blog/index.html">Blog</a>
+    </nav>
+    <aside>
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- responsive-leaderboard-koreyhintonblog -->
+      <ins class="adsbygoogle"
+	   style="display:block"
+	   data-ad-client="ca-pub-4344307951738938"
+	   data-ad-slot="4897685273"
+	   data-ad-format="auto"></ins>
+      <script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </aside>
+    <main>
+      <article>
+	<header>
+	  <h1>Navigation Bar</h1>
+	  <address><a rel="author" href="/index.html">Korey Hinton</a></address> on <time datetime="2016-03-22">March 22, 2016</time>
+	</header>
+
+	<p>Customizing a navigation bar is tricky. For this reason I usually don't use navigation controller, since frankly the navigation push animation is overused in a lot of apps and the navigation bar isn't very customizable. This post will show you how you can customize it if you need to.</p>
+
+	<h2>Tint Color</h2>
+	<p>The UIAppearance api allows you to easily change the tint color of something for your entire app. I think Apple is assuming that you either want 1 navigation controller in your app that looks consistenly the same at every stacked screen or that if you do have multiple navigation controllers in your app they'd look the same. For that reason the easiest way to set the tint color is in application:didFinishLaunching:</p>
+
+<pre>
+
+ func application(application: UIApplication,
+   didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+    UINavigationBar.appearance().tintColor = UIColor.blackColor()
+    return true
+}
+</pre>
+  <img class="border" src="images/nav1.png" alt="navigation tint" />
+
+<h2>Bar Tint</h2>
+
+<p>Changing the background color of the navigation bar's tint can similarly be done using the UIAppearance api:</p>
+
+<pre>
+UINavigationBar.appearance().barTintColor = UIColor.redColor()
+</pre>
+
+  <img class="border" src="images/nav2.png" alt="navigation bar tint" />
+
+<h2>Title Text Attributes</h2>
+
+
+<p>You can use the title text attributes dictionary to pass in a variety of attributes, use the NSForegroundColorAttributeName key to set the title text color:</p>
+<pre>
+UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+</pre>
+
+<img class="border" src="images/nav3.png" alt="navigation title text attributes" />
+
+	<h2>Translucent</h2>
+	<p>If the translucent nature of the navigation bar bothers you (allowing background colors underneath bleed through), then set the translucent property to false. You can kind of see that this version is lighter since darker black background underneath is no longer affecting the color. Doing all of these changes in the app delegate is recommended:</p>
+
+<pre>
+func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    
+    UINavigationBar.appearance().tintColor = UIColor.blackColor()
+    UINavigationBar.appearance().barTintColor = UIColor.redColor()
+    UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor()]
+    UINavigationBar.appearance().translucent = false
+    return true
+}
+</pre>
+
+<img class="border" src="images/nav4.png" alt="navigation translucent" />
+
+	
+	
+</article>      
+    </main>
+    <aside>
+      <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive-leaderboard-koreyhintonblog -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-4344307951738938"
+     data-ad-slot="4897685273"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    </aside>
+    <footer>
+      
+    </footer>
+  </body>
+</html>
